@@ -14,15 +14,11 @@ app.use(logger);
 
 app.use(cors());
 app.use(express.json());
+
 app.use(notesRoutes);
-
-app.get('/test-error', () => {
-  throw new Error('Simulated server error');
-});
-
 app.use(notFoundHandler);
-
 app.use(errorHandler);
+
 await connectMongoDB();
 
 app.listen(PORT, () => {
